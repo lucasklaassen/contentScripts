@@ -1,17 +1,22 @@
 var autoContentGroupSetup = {
 	init : {
 		elements : function(){
-			var homeFeatureImage = ".homeFeatureImage";
-			$('html').prepend('<iframe class="homeFeatureImage"></iframe');
-			var pageFeatureImage = ".pageFeatureImage";
-			$('html').prepend('<iframe class="pageFeatureImage"></iframe');
-			var socialIcons = ".socialIcons";
-			$('html').prepend('<iframe class="socialIcons"></iframe');
-			$('body').not('.homeFeatureImage, .pageFeatureImage').html('<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">Starting...</div></div>');
-			$('.progress-bar').css('width', '10%');
-			autoContentGroupSetup.automation.init(homeFeatureImage);
-			autoContentGroupSetup.automation.init(pageFeatureImage);
-			autoContentGroupSetup.automation.init(socialIcons);
+			if(location.search === "?method=contentGroups.list"){
+				var homeFeatureImage = ".homeFeatureImage";
+				$('html').prepend('<iframe class="homeFeatureImage"></iframe');
+				var pageFeatureImage = ".pageFeatureImage";
+				$('html').prepend('<iframe class="pageFeatureImage"></iframe');
+				var socialIcons = ".socialIcons";
+				$('html').prepend('<iframe class="socialIcons"></iframe');
+				$('body').not('.homeFeatureImage, .pageFeatureImage').html('<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">Starting...</div></div>');
+				$('.progress-bar').css('width', '10%');
+				autoContentGroupSetup.automation.init(homeFeatureImage);
+				autoContentGroupSetup.automation.init(pageFeatureImage);
+				autoContentGroupSetup.automation.init(socialIcons);
+			} else {
+				alert("You are not on the right page! Taking you there now...");
+				location.href="/2014/settings/index.cfm?method=contentGroups.list";
+			}
 		},
 	},
 	automation : {
